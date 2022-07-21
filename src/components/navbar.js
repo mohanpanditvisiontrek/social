@@ -3,19 +3,22 @@ import { NavLink } from "react-router-dom"
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import './css/navbar.css';
 import image1 from './logo.jpg';
-import { FiHome } from "react-icons/fi";
+import { BiHome, BiVideo, BiBell , BiMessageRoundedDots } from "react-icons/bi";
+import { BiFlag ,BiUserPlus, BiUserCircle } from "react-icons/bi";
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-
+import UserData from "../context/usercontext";
+import React, { useContext} from 'react'
+import Avatar from 'react-avatar';
 // eslint-disable-next-line
 function MainNavbar(){
 
+  const userdata=useContext(UserData)
+
     return (
         <>
-        <Navbar bg="light" className="shadow" expand="lg">
+        <Navbar bg="light" className="shadow" fixed="top"  expand="lg">
       <Container>
         <NavLink to="/">
           <img src={image1}  className="logo" /></NavLink>
@@ -30,24 +33,23 @@ function MainNavbar(){
               aria-label="Search"
             />
           </Form>
-          <NavLink to="/mk" >{FiHome}</NavLink>
+          <NavLink to="/mk" className="ms-md-5" >{BiHome}</NavLink>
 
-            <Nav.Link href="#link">Link</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
+            <NavLink to="">{BiFlag}</NavLink>
+            <NavLink to="">{BiUserPlus}</NavLink>
+            <NavLink to="">{BiVideo}</NavLink>
+            
           </Nav>
+         
         </Navbar.Collapse>
       </Container>
+      <NavLink to="" className="icon">{BiMessageRoundedDots}</NavLink>
+          <NavLink to="" className="icon">{BiBell}</NavLink>
+          <NavLink to="" className="profile_pic">
+          <Avatar googleId="118096717852922241760" src={"http://127.0.0.1:8000"+userdata.profile_pic} size="45" round={true} />
+          </NavLink>
     </Navbar>
+
         </>
     )
 
