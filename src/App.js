@@ -1,23 +1,26 @@
 import './App.css';
 import { BrowserRouter,Route,Routes} from "react-router-dom"
 import MainNavbar from './components/navbar';
-import LeftBar from './components/home';
-import UserState from "./context/userstate";
+import HomePage from './components/home';
+import { AuthProvider } from "./context/authProvider";
+import Login from "./components/login";
+import Protected from './components/Protected';
 
 
 function App() {
   return (
     <>
-      <UserState>
+   <AuthProvider>
     <BrowserRouter>
-    <MainNavbar />
-   <LeftBar/>
+    <MainNavbar/>
     <Routes>
-      <Route path='/' element={""}></Route>
+      <Route path='' element={ <Login/>} exact></Route>
+      <Route path='home' element={ <Protected Component={HomePage} /> }></Route>
       <Route path='mk' element={"ok done"}></Route>
+    
     </Routes>
     </BrowserRouter>
-    </UserState>
+    </AuthProvider>
     </>
   );
 }

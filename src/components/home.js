@@ -17,12 +17,13 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Image from 'react-bootstrap/Image'
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import UserData from "../context/usercontext";
+import AuthContext from '../context/authProvider';
+
+const HomePage = () => {
+
+  let {userdata}= useContext(AuthContext);
 
 
-const LeftBar = () => {
-
-  const userdata=useContext(UserData)
 
   return (
     <>
@@ -33,8 +34,8 @@ const LeftBar = () => {
       <div className="list-group-item list-group-item-action py-3 lh-sm">
         <div className="d-flex w-100 align-items-center justify-content-between">
           <NavLink to="" className="mb-1 text-dark text-decoration-none">
-          <Avatar googleId="118096717852922241760" src={"http://127.0.0.1:8000"+userdata.profile_pic} size="45" round={true} />  <strong>
-          {userdata.username}</strong></NavLink>
+          <Avatar googleId="118096717852922241760" src="" size="45" round={true} />  <strong className='fs-5 text-capitalize'>
+          {userdata.name}</strong></NavLink>
         </div>
       </div>
 
@@ -83,9 +84,13 @@ const LeftBar = () => {
   <div className='posts scrollarea'>
   <Card style={{ width: '30rem' }} className="mt-3">
      <Card.Title>
-  
-     <Avatar googleId="118096717852922241760" className='ms-2 mt-1' src={"http://127.0.0.1:8000"+userdata.profile_pic} size="65" round={true} /> 
-     <strong className='ms-3'>{userdata.username}</strong>
+     {userdata.profile_pic=="null" ?
+      <Avatar googleId="118096717852922241760" className='ms-2 mt-1' src='http://127.0.0.1:8000//media/profile/goog_2MBvImK.jpeg'  size="65" round={true} /> 
+     :
+     <Avatar googleId="118096717852922241760" className='ms-2 mt-1'  size="65" round={true} /> }
+     
+    <strong className='fs-5 text-capitalize ms-3' >
+          {userdata.name}</strong>
      </Card.Title>
       <Card.Body>
       <Card.Text>
@@ -110,4 +115,4 @@ const LeftBar = () => {
   );
 };
 
-export default LeftBar;
+export default HomePage;

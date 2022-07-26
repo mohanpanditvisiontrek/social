@@ -10,7 +10,7 @@ const UserState=(props)=>
     useEffect(()=>{
         async function getAllData(){
           try{
-            let mydata=await axios.get("http://127.0.0.1:8000/get-user/04729ee3-1e19-4f69-87a2-9e99711bf677")
+            let mydata=await axios.get("http://127.0.0.1:8000/get-user/97c43505-04a0-42f1-be6c-7bc160c6adb2")
     
             setData(mydata.data)
           }
